@@ -14,7 +14,22 @@ class AlbumController extends Controller
 
 		//Get all the albums from the database and pass it as a JSON response.
 
-		$albums = DB::select("select * from albums");
+//		$albums = DB::select("select * from albums");
+
+		$albums = [
+			[
+				'id' => 1,
+				'name' => 'Test 1',
+				'image' => 'https://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg'
+
+			],
+			[
+
+				'id' => 2,
+				'name' => 'Test 2',
+				'image' => 'https://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg'
+			]
+		];
 
 		$response = [
 			'albums' => $albums
