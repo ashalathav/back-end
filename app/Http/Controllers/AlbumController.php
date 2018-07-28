@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Album;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class AlbumController extends Controller
 {
@@ -33,6 +34,9 @@ class AlbumController extends Controller
 
 		//Get the data from the frontend.
 		$name = $request->input('name');
+		$image = $request->file('image');
+
+
 
 //		$name1 = $_POST['name'];
 //
@@ -50,6 +54,7 @@ class AlbumController extends Controller
 		$album = new Album();
 		$album->name = $name;
 		$album->is_published = false;
+		$album->image = $path;
 		$album->save();
 
 		$response = ['status' => 'success'];
