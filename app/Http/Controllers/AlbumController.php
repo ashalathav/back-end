@@ -12,24 +12,8 @@ class AlbumController extends Controller
 
 	public function index(){
 
-		//Get all the albums from the database and pass it as a JSON response.
 
-//		$albums = DB::select("select * from albums");
-
-		$albums = [
-			[
-				'id' => 1,
-				'name' => 'Test 1',
-				'image' => 'https://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg'
-
-			],
-			[
-
-				'id' => 2,
-				'name' => 'Test 2',
-				'image' => 'https://imgsv.imaging.nikon.com/lineup/lens/zoom/normalzoom/af-s_dx_18-140mmf_35-56g_ed_vr/img/sample/sample1_l.jpg'
-			]
-		];
+		$albums = Album::all();
 
 		$response = [
 			'albums' => $albums
@@ -40,17 +24,54 @@ class AlbumController extends Controller
 	}
 
 
-	public function store(){
-
-		//Get the data from the frontend.
+	public function store(Request $request){
 
 		//Validate the data
+		$this->validate($request,[
+			'name' => 'required|string'
+		]);
+
+		//Get the data from the frontend.
+		$name = $request->input('name');
+
+//		$name1 = $_POST['name'];
+//
+//		$name = $mysqli->real_escape_string($name1);
+//
+//
+//		$sql = "select * from users where username = $name";
+
+
+
 
 
 		//Store the data in the database.
 
+		$album = new Album();
+		$album->name = $name;
+		$album->is_published = false;
+		$album->save();
+
+		$response = ['status' => 'success'];
+
+		return response()->json($response,200);
+
 
 		//Send a success response.
+
+
+
 	}
+
+	public function update() {
+
+	}
+
+
+	public function destroy() {
+
+	}
+
+
 
 }
