@@ -54,7 +54,7 @@ class AlbumController extends Controller
 		$album = new Album();
 		$album->name = $name;
 		$album->is_published = false;
-		$album->image = $path;
+//		$album->image = $path;
 		$album->save();
 
 		$response = ['status' => 'success'];
